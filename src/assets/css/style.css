@@ -1,0 +1,32 @@
+.bg {
+    background-image: linear-gradient(0deg,#f5f1f1,#ecdcdc,#7af);
+  }
+  
+  .pop-up-menu {
+    padding: 3px;
+    background-image: linear-gradient(0deg,#f5f1f1,#ecdcdc,#7af);
+    opacity: 0;
+    height: 100vh;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    width: 200px;
+    left: -150px;
+    transition: 0.8s;
+    min-height: 100%;
+    /* background: #8b8b8b; */
+  }
+  
+  .pop-up-menu:hover {
+      left: 0;
+      opacity: 1;
+      /* background: #353535; */
+  }
+  
+  
+  .main {
+    /* padding: 0 36px; */
+    height: 100vh;
+    overflow: auto;
+    /* width: 100vw; */
+  }

@@ -1,0 +1,66 @@
+nav {
+    display: flex;
+    height: 40px;
+    /* justify-content: space-around; */
+}
+
+.blog-name {
+    flex: 4;
+    justify-content: center;
+    text-decoration: none;
+    text-align: center;
+    font-size: 36px;
+    color: white;
+}
+
+form {
+    flex: 4;
+    position: relative;
+    width: 300px;
+    margin: 0 auto;
+}
+.search {
+    background: #7af;
+}
+.search form {
+    height: 40px;
+}
+
+.search input {
+    height: 100%;
+    width: 0;
+    padding: 0 42px 0 15px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    outline: none;
+    background: transparent;
+    transition: 0.4s cubic-bezier(0, 0.8, 0, 1);
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.search input:focus {
+    width: 250px;
+    z-index: 1;
+    border-bottom: 2px solid #F9F0DA;
+}
+
+.search button {
+    background: #7af;
+    border: none;
+    height: 42px;
+    width: 42px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+
+.search button::before {
+    content: url('../search.png');
+    font-family: iconfont;
+    font-size: 16px;
+    color: #F9F0DA;
+}

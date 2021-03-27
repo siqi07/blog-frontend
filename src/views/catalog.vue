@@ -5,19 +5,18 @@
       <left-menu></left-menu>
     </div>
     <div class="main">
-      <home-main></home-main>
+      <catalog-main></catalog-main>
     </div>
   </div>
 </template>
-
 <script>
 import LeftMenu from "../components/LeftMenu";
-import HomeMain from "../components/HomeMain"; 
+import CatalogMain from "../components/CatalogMain"; 
 export default {
-  name: "Home",
+  name: "Catalog",
   components: {
     "left-menu": LeftMenu,
-    "home-main": HomeMain,
+    "catalog-main": CatalogMain,
   },
 };
 </script>
