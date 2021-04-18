@@ -14,20 +14,21 @@
                 <h3>目前共有{{ blogNumber }}篇博文</h3>
             </div>
             <template v-if="ok" class="catalog-detail">
-                <div v-if="years == null">
+                <div v-if="blog == null">
                     <p>尚且没有任何博客</p>
                 </div>
-                <div v-for="value in years" :key="value.yearid" class="years">
+                <div v-for="value in blog" :key="value.yearid" class="years">
                     <div class="year-item">
                         <!-- <img></img> -->
-                        <h4>{{ value.yearid }}</h4>
+                        <h4>{{ value.yearId }}</h4>
                     </div>
-                    <div v-for="value1 in value.months" :key="value1.monthid" class="months">
-                        <div class="month">{{ value1.monthid }}月</div>
+                    <div v-for="value1 in value.months" :key="value1.monthId" class="months">
+                        <div class="month">{{ value1.monthId }}月</div>
                         <!-- <div class="month-item">{{ value1.blogTitle }}</div> -->
                         <div class="month-item">
-                            <div v-for="value2 in value1.blogTitle" :key="value2" class="item">
-                                <a href="#" class="blog-title">{{ value2 }}</a>
+                            <div v-for="value2 in value1.blog" :key="value2" class="item">
+                                <router-link :to="{ path: '/'+ value2.blogId}" class="blog-title">{{ value2.blogTitle }}</router-link>
+                                <!-- <a href="value2.blogId" class="blog-title">{{ value2.blogTitle }}</a> -->
                             </div>
                         </div>
                     </div>
@@ -39,6 +40,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import navigation from '../components/navigation.vue'
 
 export default({
@@ -48,47 +50,25 @@ export default({
     // },
     data() {
         return {
-            "blogNumber": 3,
+            "blogNumber": null,
             "ok": true,
-            "blog": [
-                {
-                    blogId:1,
-                    blogTitle: "第一",
-                    subTitle: "one",
-                    date: "11/1/2021",
-                    tags: ["生活", "学习"]
-                },{
-                    blogId:1,
-                    blogTitle: "第一",
-                    subTitle: "one",
-                    date: "11/1/2021",
-                    tags: ["生活", "学习"]
-                }
-            ],
-            "years": [
-                {
-                    yearid:"2021",
-                    months: [
-                        {
-                            monthid: '1',
-                            blogTitle: ["one", "two", "three", "four"]
-                        },{
-                            monthid: '2',
-                            blogTitle: ["one", "two", "three"]
-                        }
-                    ]
-                },
-                {
-                    yearid: "2020",
-                    months: [
-                        {
-                            monthid: '1',
-                            blogTitle: ["one", "two", "three"]
-                        }
-                    ]
-                }
-            ]
+            "blog": []
         }
+    },
+    created() {
+        const instance = axios.create({
+            baseURL: 'http://localhost:3000/api',
+            timeout: 3000,
+        })
+
+        instance.get('/blog/countAll').then(res => {
+            this.blogNumber = res.data.data
+        })
+
+        instance.get('/blog/catalog').then(res => {
+            // console.log(res.data.data)
+            this.blog = res.data.data
+        })
     },
     components: {
         'navigation': navigation
