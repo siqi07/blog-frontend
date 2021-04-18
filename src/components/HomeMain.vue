@@ -19,15 +19,15 @@
             <template v-if="artcles != null">
                 <div 
                 v-for="artcle in artcles"
-                :key="artcle.id"
+                :key="artcle.blogId"
 			    id = key>
                     <div class="artcle-item">
-                        <div class="item-title">{{ artcle.title }}</div>
-                        <div class="item-date">{{ artcle.date }}</div>
-                        <div class="item-content">{{ artcle.content }}</div>
-                        <a href="#" class="item-button">阅读全文</a>
+                        <div class="item-title">{{ artcle.blogTitle }}</div>
+                        <div class="item-date">{{ artcle.uploadTime }}</div>
+                        <div class="item-content">{{ artcle.abstract }}</div>
+                        <router-link :to="{ path: '/'+ artcle.blogId }" class="item-button">阅读全文</router-link>
                         <div class="item-tags">
-                            <a v-for="tag in artcle.tags" :key="tag.id" href="tag.id" class="tag">{{ tag.tag }}</a>
+                            <a v-for="tag in artcle.tags" :key="tag.id" href="tag.id" class="tag">{{ tag.tagName }}</a>
                         </div>
                     </div>
                 </div>
@@ -51,61 +51,36 @@
 
 <script>
 import navigation from '../components/navigation.vue'
-
+import axios from 'axios'
+// import BlogDetail from '../views/BlogDetail'
 export default({
     name: "main",
     data() {
         return {
-            artcles: [
-                {
-                    id: 1,
-                    title: "title1",
-                    date: "12/1/2021",
-                    content: "Hello world!",
-                    tags: [
-						{
-							id: 1,
-							tag:"生活"
-						},{
-							id: 2,
-							tag: "随笔"
-						}
-					]
-                },{
-					id: 2,
-                    title: "title2",
-                    date: "10-1-2021",
-                    content: "Hello world.",
-                    tags: [
-						{
-							id: 1,
-							tag:"生活"
-						},{
-							id: 2,
-							tag: "随笔"
-						}
-					]
-				},{
-					id: 2,
-                    title: "title2",
-                    date: "10-1-2021",
-                    content: "Hello world.",
-                    tags: [
-						{
-							id: 1,
-							tag:"生活"
-						},{
-							id: 2,
-							tag: "随笔"
-						}
-					]
-				}
-            ],
+            artcles: [],
             ok: true
         }
     },
     components: {
         'navigation': navigation
+    },
+    created() {
+        const instance = axios.create({
+            baseURL: 'http://localhost:3000/api',
+            timeout: 1000,
+            // headers: 'Access-Control-Allow-Origin'
+        })
+
+        instance.get('/blog/findAll').then(res=>{
+            // console.log(res.data)
+            for (let key in res.data.data) {
+                let v = res.data.data
+                // console.log(v[key])
+                this.artcles.push(v[key])
+            }
+            // console.log(this.artcles)
+        })
+        // this.blogId = this.$route.query.blogId
     }
 })
 </script>
