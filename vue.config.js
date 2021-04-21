@@ -49,7 +49,24 @@ module.exports = {
         .use('vue-markdown-loader')
         .loader('vue-markdown-loader/lib/markdown-compiler')
         .options({
-          raw: true
+          raw: true,
         })
     }
 }
+
+// module.exports = {
+//   chainWebpack: config => {
+//     config.module
+//       .rule('md')
+//       .test(/\.md$/)
+//       .use('html-loader')
+//       .loader('html-loader')
+//       .end()
+//       .use('markdown-loader')
+//       .loader('markdown-loader')
+//       .end()
+//       // .options({
+//       //   raw: true
+//       // })
+//   }
+// }

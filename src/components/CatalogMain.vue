@@ -27,7 +27,7 @@
                         <!-- <div class="month-item">{{ value1.blogTitle }}</div> -->
                         <div class="month-item">
                             <div v-for="value2 in value1.blog" :key="value2" class="item">
-                                <router-link :to="{ path: '/find', query: {blogId:value2.blogId}}" class="blog-title">{{ value2.blogTitle }}</router-link>
+                                <router-link :to="{ path: '/find', query: { blogId:value2.blogId }}" class="blog-title">{{ value2.blogTitle }}</router-link>
                                 <!-- <a href="value2.blogId" class="blog-title">{{ value2.blogTitle }}</a> -->
                             </div>
                         </div>
