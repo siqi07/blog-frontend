@@ -25,15 +25,15 @@
                         <div class="item-title">{{ artcle.blogTitle }}</div>
                         <div class="item-date">{{ artcle.uploadTime }}</div>
                         <div class="item-content">{{ artcle.abstract }}</div>
-                        <router-link :to="{ path: '/'+ artcle.blogId }" class="item-button">阅读全文</router-link>
+                        <router-link :to="{ path: '/find', query: { blogId:artcle.blogId }}" class="item-button">阅读全文</router-link>
                         <div class="item-tags">
-                            <a v-for="tag in artcle.tags" :key="tag.id" href="tag.id" class="tag">{{ tag.tagName }}</a>
+                            <router-link v-for="tag in artcle.tags" :key="tag.id"  :to="{ path: '/tags/tag'+ tag.tagId}" class="tag">{{ tag.tagName }}</router-link>
                         </div>
                     </div>
                 </div>
             </template>
         </div>
-        <div>
+        <!-- <div>
             <template v-if="ok == true">
                 <div class="page">
                     <ul class="page-list">
@@ -45,7 +45,7 @@
                     </ul>
                 </div>
             </template>
-        </div>
+        </div> -->
     </div>
 </template>
 
