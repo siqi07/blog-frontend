@@ -4,8 +4,10 @@
         <div  class="head-portrait">
           <img src="https://cdn.jsdelivr.net/gh/Tomotoes/images/blog/avatar.jpg">
         </div>
-        <span>SIQI</span>
-        <div>
+        <span>{{nickName}}</span>
+        <br/>
+        <span class="introduce">{{introduce}}</span>
+        <!-- <div>
           <div>
             <a href="/" class="rad">链接</a>
             <a href="/about" class="rad">链接</a>
@@ -14,9 +16,9 @@
             <a href="Home" class="rad">button3</a>
             <a href="Home" class="rad">button4</a>
           </div>
-        </div>
+        </div> -->
       </div>
-      <div class="statistics">
+      <!-- <div class="statistics">
         <ul>
           <li>
             <a class="total-link">hebi</a> 
@@ -28,7 +30,7 @@
             <a class="total-link">zz</a>
           </li>
         </ul>
-      </div>
+      </div> -->
       <div>
         <a href="/" class="label">主页</a>
         <a href="Catalog" class="label">归档</a>
@@ -39,8 +41,26 @@
   </div>
 </template>
 <script>
+import axios from 'axios'
 export default({
+  data() {
+    return {
+      nickName: null,
+      introduce: null
+    }
+  },
+  created() {
+        const instance = axios.create({
+            baseURL: 'http://localhost:3000/api',
+            timeout: 1000,
+        })
 
+        instance.get('/user/find').then(res=>{
+          // console.log(res.data.data)
+          this.nickName = res.data.data[0].nickName
+          this.introduce = res.data.data[0].introduce
+        })
+    }
 })
 </script>
 
