@@ -64,3 +64,10 @@ form {
     font-size: 16px;
     color: #F9F0DA;
 }
+
+.title {
+    font-size: 42px;
+    font-style: normal;
+    font-family: "Comic Sans MS", "Helvetica Neue", "Microsoft Yahei", -apple-system,sans-serif;
+    color: whitesmoke;
+}

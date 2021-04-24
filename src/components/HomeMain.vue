@@ -4,8 +4,8 @@
         <navigation></navigation>
         <!-- 标题 -->
         <div class="title">
-            <h1>title</h1>
-            <h2>subtitle</h2>
+            <h1>{{title}}</h1>
+            <h2>{{subTitle}}</h2>
         </div>
         <!-- 博客内容列表 -->
         <div class="artcle">
@@ -58,7 +58,9 @@ export default({
     data() {
         return {
             artcles: [],
-            ok: true
+            ok: true,
+            title: null,
+            subTitle: null
         }
     },
     components: {
@@ -79,6 +81,12 @@ export default({
                 this.artcles.push(v[key])
             }
             // console.log(this.artcles)
+        })
+        instance.get('/web/find').then(res=>{
+        //   console.log(res.data.data)
+        //   this.webTitle = res.data.data[0].webTitle
+          this.title = res.data.data[0].title
+          this.subTitle = res.data.data[0].subTitle
         })
         // this.blogId = this.$route.query.blogId
     }

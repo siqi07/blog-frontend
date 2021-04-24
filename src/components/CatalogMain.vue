@@ -2,11 +2,11 @@
     <div class="main-bg">
         <!-- 导航栏 -->
         <navigation></navigation>
-        <!-- 标题 -->
+        <!-- 标题
         <div class="title">
             <h1>title</h1>
             <h2>subtitle</h2>
-        </div>
+        </div> -->
         <div class="catalog-bg">
             <div v-if="years != null" class="total-catalog">
                 <!-- 图标 -->
